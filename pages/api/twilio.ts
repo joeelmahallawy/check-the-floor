@@ -14,10 +14,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     ) {
       // checks every 30 minutes
       await JobQueue.enqueue({}, { repeat: { every: x * 1000 } });
+      res.send({});
+    } else {
+      throw new Error("Unauthorized");
     }
-
-    res.send({});
-    res.end();
   } catch (error) {
     res.json({ err: error.message });
   }

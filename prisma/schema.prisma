@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,24 +8,23 @@ datasource db {
 }
 
 model Collection {
-  id BigInt @id 
+  id             BigInt                      @id
   collectionName String
-  subcribed SubscribersAndCollections[]
+  subcribed      SubscribersAndCollections[]
 }
 
 model Subscriber {
-  id BigInt @id 
+  id          BigInt                      @id
   phoneNumber BigInt
   collections SubscribersAndCollections[]
 }
 
-model SubscribersAndCollections{
-  Subscriber Subscriber @relation(fields: [subscriberID], references: [id])
-  subscriberID BigInt 
-  Collection Collection @relation(fields: [collectionID],references: [id])
-  collectionID BigInt 
+model SubscribersAndCollections {
+  subscriberID BigInt
+  collectionID BigInt
   triggerPrice Int
-  @@id([collectionID,subscriberID])
+  Collection   Collection @relation(fields: [collectionID], references: [id])
+  Subscriber   Subscriber @relation(fields: [subscriberID], references: [id])
+
+  @@id([collectionID, subscriberID])
 }
-
-
