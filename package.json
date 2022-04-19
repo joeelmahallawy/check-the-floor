@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "concurrently 'next dev' 'quirrel'",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc"
