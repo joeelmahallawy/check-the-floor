@@ -1,4 +1,4 @@
-import { Text, Center, Flex, useToast } from "@chakra-ui/react";
+import { Text, Center, Flex, useToast, Button } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Form from "../components/form";
 import Header from "../components/header";
@@ -17,6 +17,15 @@ const IndexPage = () => {
   return (
     <Flex flexDir="column">
       <Header />
+      <Button
+        onClick={async () => {
+          const res = await fetch(`/api/twilio`);
+          const data = await res.json();
+          console.log(data);
+        }}
+      >
+        Enqueue
+      </Button>
       <Center flexDir="column" m="0 auto">
         <form
           style={{ width: "150%", display: "flex", flexDirection: "column" }}
