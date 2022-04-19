@@ -3,13 +3,6 @@ import { CronJob } from "quirrel/blitz";
 import SendSMS from "../../../helpers/twilio";
 import prisma from "../../../lib/prisma";
 
-type Notification = {
-  floorPrice: number;
-  triggerPrice: number;
-  collectionName: string;
-  phoneNumber: string;
-};
-
 export default Queue(
   "api/queues/jobs", // 👈 the route it's reachable on
   async () => {

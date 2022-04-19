@@ -5,7 +5,8 @@ import prisma from "../../lib/prisma";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     let { collectionURL, TriggerPrice, phoneNumber } = JSON.parse(req.body);
-    phoneNumber = phoneNumber.replaceAll("+", "").replaceAll("-", "");
+    // phoneNumber = phoneNumber.replaceAll("+", "").replaceAll("-", "");
+
     const collectionName = collectionURL.slice(
       collectionURL.lastIndexOf("/") + 1
     );

@@ -13,6 +13,7 @@ const IndexPage = () => {
     phoneNumber: "",
     collectionStats: {},
   });
+  console.log(state.phoneNumber);
 
   return (
     <Flex flexDir="column">
@@ -53,7 +54,13 @@ const IndexPage = () => {
                     console.log(stats);
                     const subscribe = await fetch(`/api/subscribe`, {
                       method: "POST",
-                      body: JSON.stringify({ ...state }),
+                      body: JSON.stringify({
+                        ...state,
+                        // remove any + or - from phone input
+                        phoneNumber: state.phoneNumber
+                          .replaceAll("+", "")
+                          .replaceAll("-", ""),
+                      }),
                     });
 
                     // handle any errors
