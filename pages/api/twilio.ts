@@ -4,16 +4,20 @@ import JobQueue from "../api/queues/jobs";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    // const subscriptions = await prisma.subscribersAndCollections.findMany()
-    // subscriptions.forEach(sub=>{
-    //     sub.
-    // })
+    const x = 1800;
+    // auth for only developer to call this (THIS IS TO BE CALLED ONCE)
+    // this calls a job every x seconds (x=10)
+    // whenever a job gets called, we loop thru our database and send messages
+    if (
+      // can find this in .env.local
+      req.headers.authorization == process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    ) {
+      // checks every 30 minutes
+      await JobQueue.enqueue({}, { repeat: { every: x * 1000 } });
+    }
 
-    await JobQueue.enqueue(
-      "6478958647", // job to be enqueued
-      { repeat: { every: 30000 } } // every 30 seconds
-    );
-    res.json({ areYouBawty: true });
+    res.send({});
+    res.end();
   } catch (error) {
     res.json({ err: error.message });
   }

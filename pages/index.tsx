@@ -106,5 +106,3 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
-
-// 86400000
