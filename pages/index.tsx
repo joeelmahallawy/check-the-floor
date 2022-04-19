@@ -20,11 +20,14 @@ const IndexPage = () => {
       <Header />
       <Button
         onClick={async () => {
-          const res = await fetch(`/api/twilio`, {
-            headers: {
-              Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-            },
-          });
+          const res = await fetch(
+            `https://check-the-floor.vercel.app/api/twilio`,
+            {
+              headers: {
+                Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+              },
+            }
+          );
           const data = await res.json();
           console.log(data);
         }}
