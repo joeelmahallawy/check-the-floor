@@ -13,8 +13,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       req.headers.authorization == process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     ) {
       // checks every 30 minutes
-      await JobQueue.enqueue({}, { repeat: { every: x * 1000 } });
-      res.send({});
+      const queueRes = await JobQueue.enqueue(
+        {},
+        { repeat: { every: x * 1000 } }
+      );
+      res.send(queueRes);
     } else {
       throw new Error("Unauthorized");
     }
