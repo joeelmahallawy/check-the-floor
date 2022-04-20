@@ -35,14 +35,14 @@ const notify = async () => {
         `CheckTheFloor: ${sub.collectionName}'s floor price fell under your trigger price (${sub.triggerPrice}ETH), it's currently at ${stats.floor_price} ETH.`
       );
       // remove that subscription from the database so they receive message once and don't get spammed
-      //   await prisma.subscribersAndCollections.delete({
-      //     where: {
-      //       collectionID_subscriberID: {
-      //         collectionID: BigInt(sub.collectionID),
-      //         subscriberID: BigInt(sub.subscriberID),
-      //       },
-      //     },
-      //   });
+      await prisma.subscribersAndCollections.delete({
+        where: {
+          collectionID_subscriberID: {
+            collectionID: BigInt(sub.collectionID),
+            subscriberID: BigInt(sub.subscriberID),
+          },
+        },
+      });
     }
   });
 };
