@@ -1,10 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import SendSMS from "../../helpers/twilio";
 import prisma from "../../lib/prisma";
 import JobQueue from "../api/queues/jobs";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const x = 1800;
+    // const x = 1800;
+    const x = 15;
     // auth for only developer to call this (THIS IS TO BE CALLED ONCE)
     // this calls a job every x seconds (x=10)
     // whenever a job gets called, we loop thru our database and send messages
@@ -17,6 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         {},
         { repeat: { every: x * 1000 } }
       );
+
       res.send(queueRes);
     } else {
       throw new Error("Unauthorized");

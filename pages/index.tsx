@@ -24,6 +24,7 @@ const IndexPage = () => {
             headers: {
               Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
             },
+            method: "POST",
           });
           const data = await res.json();
           console.log(data);
