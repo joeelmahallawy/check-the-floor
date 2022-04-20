@@ -4,6 +4,7 @@ import SendSMS from "../../../helpers/twilio";
 import prisma from "../../../lib/prisma";
 
 export default Queue(
+  // "api/queues/jobs", // 👈 the route it's reachable on
   "api/queues/jobs", // 👈 the route it's reachable on
   async () => {
     // get all subscriptions
