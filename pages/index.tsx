@@ -20,6 +20,7 @@ const IndexPage = () => {
       <Header />
       <Button
         onClick={async () => {
+          console.log(process.env.NEXT_PUBLIC_QUIRREL_BASE_URL);
           const res = await fetch(`/api/twilio`, {
             headers: {
               Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,

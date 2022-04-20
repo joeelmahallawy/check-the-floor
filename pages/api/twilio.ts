@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { QuirrelClient } from "quirrel/dist/esm/src/client";
 import SendSMS from "../../helpers/twilio";
 import prisma from "../../lib/prisma";
 import JobQueue from "../api/queues/jobs";
+
+// const quirrelClient = new QuirrelClient({ config: {} });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
