@@ -7,14 +7,14 @@ const Header = () => {
       bg="gray.100"
       mb={10}
       gap={3}
-      p="1%"
+      p={["2.5%", "5%", "1%", "1%", "1%"]}
       fontFamily="Arial"
       flexDir="column"
     >
-      <Heading>Check the floor!</Heading>
-      <Text color="gray.600">
-        Get a text message whenever any of your subscribed collection's floor
-        price falls under your trigger price
+      <Heading textAlign="center">Check the floor!</Heading>
+      <Text color="gray.600" textAlign="center">
+        Receive a text message whenever any of your subscribed Opensea
+        collection's floor price falls under your trigger price
       </Text>
     </Center>
   );

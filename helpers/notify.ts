@@ -28,6 +28,7 @@ const notify = async () => {
       );
       const { stats } = await response.json();
       // if it's less than their trigger price
+      // console.log("Hello");
       if (stats.floor_price <= sub.triggerPrice) {
         // send them a message
         await SendSMS(

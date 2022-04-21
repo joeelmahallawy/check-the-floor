@@ -1,9 +1,10 @@
-import { Text, Center, Flex, useToast, Button } from "@chakra-ui/react";
+import { Text, Center, Flex, useToast, Button, Box } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Form from "../components/form";
 import Header from "../components/header";
 import { regExs } from "../utilts";
 import { supabase } from "../lib/supabaseClient";
+import Footer from "../components/footer";
 
 const IndexPage = () => {
   const toast = useToast();
@@ -13,29 +14,21 @@ const IndexPage = () => {
     phoneNumber: "",
     collectionStats: {},
   });
-  console.log(state.phoneNumber);
 
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" h="100vh">
       <Header />
-      {/* <Button
-        onClick={async () => {
-          // console.log(process.env.NEXT_PUBLIC_QUIRREL_BASE_URL);
-          const res = await fetch(`/api/twilio`, {
-            headers: {
-              Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-            },
-            method: "POST",
-          });
-          const data = await res.json();
-          console.log(data);
-        }}
+      <Center
+        flexDir="column"
+        m="0 auto"
+        w={["85%", "75%", "60%", "50%", "35%", "25%"]}
       >
-        Enqueue
-      </Button> */}
-      <Center flexDir="column" m="0 auto">
         <form
-          style={{ width: "150%", display: "flex", flexDirection: "column" }}
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+          }}
           onSubmit={async (e) => {
             e.preventDefault();
             if (
@@ -57,7 +50,7 @@ const IndexPage = () => {
                 .then(async (res) => {
                   if (res.ok) {
                     const { stats } = await res.json();
-                    console.log(stats);
+                    // console.log(stats);
                     const subscribe = await fetch(`/api/subscribe`, {
                       method: "POST",
                       body: JSON.stringify({
@@ -74,7 +67,7 @@ const IndexPage = () => {
                     // if sucess is true, display that to the user
                     const subscribeData = await subscribe.json();
                     if (!subscribeData.success) alert(subscribeData.error);
-                    console.log(subscribeData);
+                    // console.log(subscribeData);
                     if (subscribeData.success)
                       return toast({
                         title: "Subscribed!",
@@ -90,7 +83,6 @@ const IndexPage = () => {
                         duration: 5000,
                         isClosable: true,
                       });
-
                     setState({
                       ...state,
                       collectionStats: { ...stats },
@@ -114,6 +106,8 @@ const IndexPage = () => {
           <Form state={state} setState={setState} />
         </form>
       </Center>
+
+      <Footer />
     </Flex>
   );
 };
