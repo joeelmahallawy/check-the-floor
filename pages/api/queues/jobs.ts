@@ -8,7 +8,7 @@ export default Queue(
   "api/queues/jobs", // 👈 the route it's reachable on
   async () => {
     // FIXME: NOT EXECUTING
-    // await SendSMS("6478958647", "Hi test");
+    // await SendSMS("6478958647", "LOL");
     await notify();
   }
 );
