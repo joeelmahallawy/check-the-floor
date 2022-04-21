@@ -7,8 +7,8 @@ import JobQueue from "../api/queues/jobs";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    // Checks every 10 minutes
-    const x = 600;
+    // Checks every minute
+    const x = 60;
     // auth for developer to call this (THIS IS TO BE CALLED ONCE)
     // this queues a job every x seconds
     // whenever a job gets queued, we loop thru our database and send messages
