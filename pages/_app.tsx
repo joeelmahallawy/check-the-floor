@@ -8,6 +8,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   <ChakraProvider theme={theme}>
     {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
     <Head>
+      <title>CheckTheFloor</title>
       <link rel="icon" href={icon.src} />
     </Head>
     <Script
