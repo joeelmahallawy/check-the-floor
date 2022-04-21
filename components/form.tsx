@@ -82,7 +82,7 @@ const Form = ({ state, setState }) => {
         </InputGroup>
       </FormControl>
       <Button ml="auto" mt={3} colorScheme="linkedin" type="submit">
-        Sign me up!
+        Subscribe
       </Button>
     </>
   );
