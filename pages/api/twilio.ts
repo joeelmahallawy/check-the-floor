@@ -18,10 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     ) {
       // setInterval(async () => {
       // checks every 30 minutes
-      await JobQueue.enqueue(
-        {},
-        { delay: 30000, retry: ["5min"], repeat: { every: x * 1000 } }
-      );
+      await JobQueue.enqueue({}, { delay: 30000, repeat: { every: x * 1000 } });
       // }, x * 1000);
 
       res.send({});
