@@ -5,7 +5,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     process.env.NEXT_PUBLIC_TWILIO_ACCOUNT_SID,
     process.env.NEXT_PUBLIC_TWILIO_AUTH_TOKEN
   );
-  const balance = await client.balance.fetch();
+  const { balance } = await client.balance.fetch();
+
   res.json({ balance });
 };
 export default handler;
