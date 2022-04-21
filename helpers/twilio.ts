@@ -4,6 +4,7 @@ const SendSMS = (to: string, message: string) => {
     process.env.NEXT_PUBLIC_TWILIO_ACCOUNT_SID,
     process.env.NEXT_PUBLIC_TWILIO_AUTH_TOKEN
   );
+
   client.messages.create({
     to: to,
     from: process.env.NEXT_PUBLIC_TWILIO_PHONE_NUMBER,

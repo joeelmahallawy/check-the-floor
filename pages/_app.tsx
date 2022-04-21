@@ -1,10 +1,15 @@
 import { ChakraProvider, theme } from "@chakra-ui/react";
 import { AppProps } from "next/app";
+import Head from "next/head";
 import Script from "next/script";
+import icon from "../assets/Logo-icon.ico";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ChakraProvider theme={theme}>
     {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+    <Head>
+      <link rel="icon" href={icon.src} />
+    </Head>
     <Script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-226634693-1"

@@ -49,6 +49,7 @@ const IndexPage = () => {
               )
                 .then(async (res) => {
                   if (res.ok) {
+                    // console.log(state);
                     const { stats } = await res.json();
                     // console.log(stats);
                     const subscribe = await fetch(`/api/subscribe`, {
