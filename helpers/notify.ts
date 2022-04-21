@@ -32,7 +32,7 @@ const notify = async () => {
         // send them a message
         await SendSMS(
           sub.phoneNumber,
-          `CheckTheFloor: ${sub.collectionName}'s floor price fell under your trigger price (${sub.triggerPrice}ETH), it's currently at ${stats.floor_price} ETH.`
+          `CheckTheFloor: ${sub.collectionName}'s floor price fell under your trigger price (${sub.triggerPrice}ETH), it's currently at ${stats.floor_price} ETH!`
         );
         // remove that subscription from the database so they receive message once and don't get spammed
         await prisma.subscribersAndCollections.delete({
