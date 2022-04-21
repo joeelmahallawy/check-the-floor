@@ -16,11 +16,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       // can find this in .env.local
       req.headers.authorization == process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     ) {
-      setInterval(async () => {
-        // checks every 30 minutes
-        await JobQueue.enqueue({});
-      }, x * 1000);
-      // const not = await notify();
+      // setInterval(async () => {
+      // checks every 30 minutes
+      await JobQueue.enqueue(
+        {},
+        { delay: 30000, retry: ["5min"], repeat: { every: x * 1000 } }
+      );
+      // }, x * 1000);
+
       res.send({});
     } else {
       throw new Error("Unauthorized");
