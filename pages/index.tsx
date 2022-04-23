@@ -1,10 +1,21 @@
-import { Text, Center, Flex, useToast, Button, Box } from "@chakra-ui/react";
+import {
+  Text,
+  Center,
+  Flex,
+  useToast,
+  Button,
+  Box,
+  Heading,
+  Divider,
+  useForceUpdate,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import Form from "../components/form";
 import Header from "../components/header";
 import { regExs } from "../utilts";
 import { supabase } from "../lib/supabaseClient";
 import Footer from "../components/footer";
+import ListOfSubscriptions from "../components/subscriptions";
 
 const IndexPage = () => {
   const toast = useToast();
@@ -62,6 +73,8 @@ const IndexPage = () => {
                           .replaceAll("-", ""),
                       }),
                     });
+                    // set phone number in local storage so that we can display all the subscriptions
+                    localStorage.setItem("phoneNumber", state.phoneNumber);
 
                     // handle any errors
                     if (!subscribe.ok) throw new Error(subscribe.statusText);
@@ -69,10 +82,10 @@ const IndexPage = () => {
                     const subscribeData = await subscribe.json();
                     if (!subscribeData.success) alert(subscribeData.error);
                     // console.log(subscribeData);
-                    if (subscribeData.success)
+                    if (subscribeData.success) {
                       return toast({
                         title: "Subscribed!",
-                        description: `We'll send you a message at ${state.phoneNumber
+                        description: `We'll send a message to ${state.phoneNumber
                           .replaceAll("+", "")
                           .replaceAll(
                             "-",
@@ -84,6 +97,8 @@ const IndexPage = () => {
                         duration: 5000,
                         isClosable: true,
                       });
+                    }
+
                     setState({
                       ...state,
                       collectionStats: { ...stats },
@@ -108,6 +123,9 @@ const IndexPage = () => {
         </form>
       </Center>
 
+      {typeof window !== "undefined" && localStorage.getItem("phoneNumber") && (
+        <ListOfSubscriptions />
+      )}
       <Footer />
     </Flex>
   );
