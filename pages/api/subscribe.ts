@@ -67,7 +67,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           // if subscriber does exist, then use old id, otherwise new id
           subscriberID: subscriber ? subscriber.id : subscriberID,
           // new price that the subscriber has set
-          triggerPrice: Number(TriggerPrice),
+          triggerPrice: Number.parseFloat(TriggerPrice),
         },
       });
     } else {
@@ -80,7 +80,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         },
         data: {
-          triggerPrice: Number(TriggerPrice),
+          triggerPrice: Number.parseFloat(TriggerPrice),
         },
       });
     }

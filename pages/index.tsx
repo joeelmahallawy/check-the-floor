@@ -48,7 +48,7 @@ const IndexPage = () => {
                 state.phoneNumber.replaceAll("+", "").replaceAll("-", "")
               ) &&
               regExs.url.test(state.collectionURL) &&
-              Number(state.TriggerPrice) > 0
+              Number.parseFloat(state.TriggerPrice) > 0
             ) {
               // gets collection data
               const collectionName = state.collectionURL.slice(

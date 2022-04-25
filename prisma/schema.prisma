@@ -22,7 +22,7 @@ model Subscriber {
 model SubscribersAndCollections {
   subscriberID BigInt
   collectionID BigInt
-  triggerPrice Int
+  triggerPrice Float
   Collection   Collection @relation(fields: [collectionID], references: [id])
   Subscriber   Subscriber @relation(fields: [subscriberID], references: [id])
 
