@@ -12,6 +12,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useMediaQuery,
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -24,6 +25,8 @@ const listOfSubscriptions = () => {
     localStorage.getItem("phoneNumber")
   );
   const [subscriptions, setSubscriptions] = useState([]);
+
+  const [isSmallerThan900] = useMediaQuery("(max-width: 500px)");
 
   useEffect(() => {
     (async () => {
@@ -42,7 +45,14 @@ const listOfSubscriptions = () => {
   return (
     <>
       <Divider mt={5} w="100%" />
-      <Button m="0 auto" mt="2%" onClick={onOpen}>
+      <Button
+        m="0 auto"
+        mt={["5%", "2%", "2%", "2%", "2%"]}
+        mb={["5%", "0%", "0%", "0%", "0%"]}
+        pt={[5, 2, 0, 0, 0]}
+        pb={[5, 2, 0, 0, 0]}
+        onClick={onOpen}
+      >
         Check subscriptions
       </Button>
       <Modal size="3xl" onClose={onClose} isOpen={isOpen}>
@@ -56,6 +66,7 @@ const listOfSubscriptions = () => {
           <ModalBody>
             {subscriptions.map((sub, i) => (
               <Center
+                fontSize={["8px", "10px", "medium", "medium", "medium"]}
                 key={i}
                 _hover={{ bg: "gray.200" }}
                 borderRadius={5}
@@ -67,13 +78,25 @@ const listOfSubscriptions = () => {
               >
                 <Box>
                   Collection Name
-                  <Heading fontSize="xl">{sub.collectionName}</Heading>
+                  <Heading
+                    // fontSize="xl"
+                    fontSize={["11px", "lg", "xl", "xl", "xl"]}
+                  >
+                    {sub.collectionName}
+                  </Heading>
                 </Box>
                 <Box>
                   Trigger price
-                  <Heading fontSize="xl">{sub.triggerPrice} ETH</Heading>
+                  <Heading
+                    // fontSize="xl"
+                    fontSize={["11px", "lg", "xl", "xl", "xl"]}
+                  >
+                    {sub.triggerPrice} ETH
+                  </Heading>
                 </Box>
                 <Button
+                  //
+                  size={isSmallerThan900 ? "xs" : "md"}
                   colorScheme="blue"
                   onClick={async () => {
                     // unsubscribe
